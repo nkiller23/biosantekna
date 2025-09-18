@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Biosantekna - Soluzioni innovative per l'ambiente e le persone</title>
+
+  <!-- Meta base SEO -->
+  <meta name="description" content="Biosantekna: soluzioni innovative per la sicurezza e il benessere dell’ambiente e delle persone. Leggi la nostra Privacy Policy (Reg. UE 2016/679 - GDPR)." />
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
+  <!-- Google Fonts - Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <style>
+    :root{
+      --bg:#f8f8f8;
+      --text:#333;
+      --muted:#555;
+      --heading:#2c3e50;
+      --subheading:#34495e;
+      --card:#fff;
+      --border:#e0e0e0;
+      --shadow:0 2px 5px rgba(0,0,0,.08);
+    }
+
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Montserrat',system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    /* HERO */
+    .hero-header{
+      position:relative;
+      background:transparent;
+      padding:5rem 1rem 12rem;
+      text-align:center;
+      border-bottom:1px solid #eee;
+      box-shadow:0 2px 4px rgba(0,0,0,.05);
+      min-height:400px;
+      overflow:hidden;
+      isolation:isolate; /* per corretta gestione degli pseudo-elementi */
+    }
+    /* immagine di sfondo animata */
+    .hero-header::before{
+      content:"";
+      position:absolute;
+      inset:-20px;
+      background-image:url("img/base.webp");
+      background-size:cover;
+      background-position:center bottom;
+      background-repeat:no-repeat;
+      z-index:-2;
+      animation:windEffect 18s ease-in-out infinite alternate;
+      will-change:transform;
+      transform-origin:center bottom;
+    }
+    /* velo gradiente per migliore leggibilità del logo/sottotitolo */
+    .hero-header::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,.75) 28%, rgba(255,255,255,0) 70%);
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    @keyframes windEffect{
+      0%   { transform:translateY(0) scale(1); }
+      33%  { transform:translateY(-6px) scale(1.035) skewX(.3deg); }
+      66%  { transform:translateY(4px) scale(1.08); }
+      100% { transform:translateY(0) scale(1); }
+    }
+
+    /* rispetto per chi riduce le animazioni */
+    @media (prefers-reduced-motion: reduce){
+      .hero-header::before{ animation:none; }
+    }
+
+    .hero-content{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      height:100%;
+      gap:.75rem;
+    }
+
+    .logo-img{
+      max-height:150px;
+      width:auto;
+      margin-bottom:.5rem;
+    }
+
+    .hero-subtitle{
+      color:var(--muted);
+      font-size:1.5rem;
+      font-weight:400;
+      max-width:720px;
+      margin-inline:auto;
+    }
+
+    .mascot-hero-bottom{
+      position:absolute;
+      bottom:0;
+      left:0;
+      max-height:200px;
+      width:auto;
+      z-index:1;
+      margin-left:20px;
+      pointer-events:none;
+      user-select:none;
+    }
+
+    /* SEZIONI */
+    section{
+      background:var(--card);
+      padding:2rem;
+      margin-bottom:1.5rem;
+      border-radius:.5rem;
+      box-shadow:var(--shadow);
+    }
+    h1,.h1{font-size:2.2rem;font-weight:700;color:var(--heading);margin:0 0 .75rem}
+    h2{font-size:2rem;font-weight:600;color:var(--heading);border-bottom:2px solid var(--border);padding-bottom:.6rem;margin-bottom:1.25rem}
+    h3{font-size:1.35rem;font-weight:600;color:var(--subheading);margin-top:1.5rem;margin-bottom:.5rem}
+
+    /* FOOTER */
+    footer{
+      background-color:var(--heading);
+      color:#f4f4f4;
+      text-align:center;
+      padding:2.5rem 1rem;
+      margin-top:2rem;
+      border-radius:.5rem;
+    }
+    footer p{margin-bottom:.25rem;font-weight:300}
+    footer a{color:#81d4fa;text-decoration:none;transition:color .2s ease}
+    footer a:hover{color:#e0f2f7;text-decoration:underline}
+
+    /* RESPONSIVE */
+    @media (max-width: 768px){
+      .hero-header{ padding:4rem 1rem 10rem; min-height:350px; }
+      .logo-img{ max-height:120px; }
+      .hero-subtitle{ font-size:1.2rem; }
+      h1{font-size:1.9rem}
+      h2{font-size:1.6rem}
+      .mascot-hero-bottom{ max-height:150px; margin-left:10px; }
+    }
+    @media (max-width: 576px){
+      .hero-header{ padding:3rem 1rem 8rem; min-height:300px; }
+      .logo-img{ max-height:100px; }
+      .hero-subtitle{ font-size:1.05rem; }
+      .mascot-hero-bottom{ max-height:120px; margin-left:5px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero-header" role="banner">
+    <!-- Mascotte -->
+    <img src="img/omino.webp" alt="" class="mascot-hero-bottom" loading="eager" decoding="async" aria-hidden="true" />
+
+    <div class="container hero-content">
+      <!-- Logo -->
+      <img src="img/logo.svg" alt="Biosantekna" class="logo-img" width="240" height="120" decoding="async" />
+
+      <!-- Sottotitolo -->
+      <p class="hero-subtitle">Soluzioni innovative per la sicurezza e il benessere dell’ambiente e delle persone</p>
+    </div>
+  </header>
+
+  <main id="contenuto" class="container mt-4" role="main">
+    <!-- Titolo Pagina -->
+      
+      <section class="text-center my-4">
+  <button type="button" class="btn btn-secondary px-4 py-2 rounded-pill shadow-sm"
+          onclick="window.history.back()">
+    ← Torna indietro
+  </button>
+</section>
+
+    <section aria-labelledby="titolo-pagina">
+      <h1 id="titolo-pagina">Privacy Policy</h1>
+      <p class="mb-0 text-muted">Regolamento (UE) 2016/679 del Parlamento europeo e del Consiglio del 27 aprile 2016 – «Regolamento Generale sulla Protezione dei Dati»</p>
+    </section>
+
+      <section id="cookie-policy" aria-labelledby="tit-cookie">
+  <h2 id="tit-cookie">Cookie Policy</h2>
+  <p>
+    Questo sito utilizza esclusivamente cookie tecnici necessari al corretto funzionamento delle pagine
+    (ad esempio per ottimizzare la visualizzazione da dispositivi mobili o per la sicurezza della navigazione).
+    Non viene fatto uso di cookie di profilazione, né di cookie analitici di terze parti.
+  </p>
+  <p>
+    Tali cookie, essendo indispensabili, vengono installati automaticamente al momento dell’accesso al sito
+    e non richiedono il consenso dell’utente, in conformità con il Regolamento (UE) 2016/679 (GDPR)
+    e con il provvedimento del Garante per la protezione dei dati personali del 10 giugno 2021.
+  </p>
+</section>
+
+    <!-- Informativa (Italiano) -->
+    <section id="contenuti-italiano" aria-labelledby="tit-it">
+      <h2 id="tit-it">BIOSANTEKNA (Italiano)</h2>
+
+      <p>Gentile Cliente/Fornitore, con riferimento ai Suoi dati personali oggetto di trattamento da parte dello scrivente titolare, ai sensi del Regolamento (UE) n. 2016/679 (GDPR), Le forniamo le seguenti informazioni. La presente informativa è resa ai sensi dell’art. 13 del Regolamento (UE) 2016/679, in quanto i Suoi dati sono stati raccolti direttamente presso di Lei.</p>
+
+      <h3>1. Finalità del trattamento dei dati</h3>
+      <p>Il trattamento dei dati raccolti è finalizzato principalmente all’esecuzione del mandato e/o di un contratto di cui l’interessato è parte e/o all’esecuzione di misure precontrattuali adottate su richiesta dell’interessato e/o per adempiere un obbligo legale al quale è soggetto il titolare del trattamento e/o per la salvaguardia degli interessi vitali dell’interessato o di un’altra persona fisica e/o per l’esecuzione di un compito di interesse pubblico o connesso all’esercizio di pubblici poteri di cui è investito il titolare del trattamento e/o per il perseguimento del legittimo interesse del titolare del trattamento o di terzi.</p>
+      <p>I Suoi dati personali potranno altresì essere oggetto di trattamento finalizzato alla comunicazione dei nostri prodotti e/o servizi. Potrete in ogni momento opporVi o disiscrivervi dalle comunicazioni, inviando una risposta con la Vostra decisione.</p>
+
+      <h3>2. Modalità del trattamento</h3>
+      <p>In relazione alle suindicate finalità, il trattamento dei dati avviene nel rispetto delle modalità di cui agli artt. 5, 6, 12 e 32 del Regolamento (UE) 2016/679, sia con strumenti informatici sia cartacei, da parte del Titolare e/o incaricati, adottando misure idonee a garantire sicurezza e riservatezza.</p>
+
+      <h3>3. Titolare del trattamento</h3>
+      <p>Il Titolare del trattamento è <strong>Lo Presti Girolamo</strong>, e-mail: <a href="mailto:info@biosantekna.it">info@biosantekna.it</a>.</p>
+
+      <h3>4. Natura del conferimento</h3>
+      <p>Per le finalità di cui al punto 1 il conferimento è obbligatorio; l’eventuale rifiuto potrebbe rendere impossibile o estremamente difficoltosa l’esecuzione del contratto e/o delle attività connesse.</p>
+
+      <h3>5. Comunicazione e diffusione</h3>
+      <p>I dati potranno essere comunicati a dipendenti/collaboratori incaricati e, nel rispetto degli obblighi di legge, ad altri titolari/responsabili stabiliti in Italia (es. istituti di credito, società di recupero crediti, professionisti/consulenti, aziende ICT). In tali casi l’interessato sarà informato con separato documento.</p>
+      <p>Il trasferimento potrà avvenire verso Paesi UE e/o Paesi terzi con livello adeguato. Verso Paesi terzi non adeguati, il trasferimento avverrà solo previo specifico consenso informato dell’interessato.</p>
+
+      <h3>6. Periodo di conservazione</h3>
+      <p>I dati saranno conservati per il periodo massimo previsto dalla legge e comunque non meno di 10 anni dalla conclusione dell’attività, salvo contenzioso. Al termine, sarà data comunicazione dell’avvenuta distruzione; ogni ulteriore trattamento richiederà nuova informativa.</p>
+
+      <h3>7. Diritto di accesso (art. 15 GDPR)</h3>
+      <p>L’interessato ha diritto di ottenere dal Titolare l’accesso ai dati personali e alle informazioni indicate dall’art. 15; il Titolare fornirà copia dei dati trattati.</p>
+
+      <h3>8. Rettifica e cancellazione (artt. 16–17 GDPR)</h3>
+      <p>L’interessato ha diritto di ottenere senza ingiustificato ritardo la rettifica, integrazione e/o cancellazione dei dati personali che lo riguardano.</p>
+
+      <h3>9. Limitazione di trattamento (art. 18 GDPR)</h3>
+      <p>È riconosciuto il diritto di ottenere la limitazione del trattamento nelle ipotesi previste dall’art. 18.</p>
+
+      <h3>10. Opposizione (art. 21 GDPR)</h3>
+      <p>L’interessato può opporsi in qualsiasi momento, per motivi connessi alla propria situazione particolare, al trattamento basato sull’art. 6, par. 1, lett. e) o f), compresa la profilazione. In caso di opposizione, i dati non saranno ulteriormente trattati salvo motivi legittimi cogenti o per l’accertamento/esercizio/difesa di un diritto in sede giudiziaria.</p>
+
+      <h3>11. Reclamo all’Autorità di controllo</h3>
+      <p>Qualora ritenga che il trattamento violi il GDPR, l’interessato può proporre reclamo all’Autorità Garante del proprio Stato membro di residenza/lavoro o del luogo della presunta violazione.</p>
+
+      <h3>12. Portabilità dei dati (art. 20 GDPR)</h3>
+      <p>L’interessato ha diritto di ricevere i dati personali forniti in formato strutturato, di uso comune e leggibile da dispositivo automatico, e di trasmetterli a un altro titolare.</p>
+    </section>
+      
+      <section id="privacy-english" aria-labelledby="privacy-en-title">
+  <h2 id="privacy-en-title">BIOSANTEKNA (English)</h2>
+
+  <p>
+    Dear Customer/Supplier, with regard to your personal data processed by the undersigned Controller, pursuant to Regulation (EU) No. 2016/679 (GDPR), we provide you with the following information.  
+    This notice is issued under Article 13 of Regulation (EU) 2016/679, as your data have been collected directly from you.
+  </p>
+
+  <h3>1. Purpose of Data Processing</h3>
+  <p>
+    The processing of collected data is mainly aimed at carrying out the mandate and/or a contract to which the data subject is a party, and/or the execution of pre-contractual measures adopted at the request of the data subject, and/or compliance with a legal obligation to which the Controller is subject, and/or safeguarding the vital interests of the data subject or another natural person, and/or the performance of a task carried out in the public interest or in the exercise of official authority vested in the Controller, and/or the pursuit of the legitimate interest of the Controller or third parties.
+  </p>
+  <p>
+    Your personal data may also be processed for the purpose of communicating our products and/or services. You may at any time object to or unsubscribe from such communications by sending a reply indicating your decision.
+  </p>
+
+  <h3>2. Methods of Processing</h3>
+  <p>
+    In relation to the above purposes, data processing is carried out in compliance with Articles 5, 6, 12 and 32 of Regulation (EU) 2016/679, using both electronic and paper tools, by the Controller and/or authorized staff, adopting appropriate measures to ensure security and confidentiality.
+  </p>
+
+  <h3>3. Data Controller</h3>
+  <p>
+    The Data Controller is <strong>Girolamo Lo Presti</strong>, e-mail: <a href="mailto:info@biosantekna.it">info@biosantekna.it</a>.
+  </p>
+
+  <h3>4. Nature of Providing Data</h3>
+  <p>
+    For the purposes referred to in point 1, providing your personal data is mandatory; refusal may make it impossible or extremely difficult to perform the contract and/or the related activities.
+  </p>
+
+  <h3>5. Data Communication and Disclosure</h3>
+  <p>
+    Data may be disclosed to employees/collaborators authorized to process them and, in compliance with legal obligations, to other Controllers/Processors established in Italy (e.g. credit institutions, debt collection companies, professionals/consultants, IT companies). In such cases, the data subject will be informed by a separate document.
+  </p>
+  <p>
+    Transfer may take place to EU countries and/or to third countries with an adequate level of protection. Transfer to non-adequate third countries will take place only with the specific informed consent of the data subject.
+  </p>
+
+  <h3>6. Data Retention Period</h3>
+  <p>
+    Data will be retained for the maximum period required by law and, in any case, not less than 10 years after the conclusion of the activity, except in case of litigation. At the end of such period, you will be notified of the destruction of your personal data; any further processing will require a new notice.
+  </p>
+
+  <h3>7. Right of Access (Art. 15 GDPR)</h3>
+  <p>
+    The data subject has the right to obtain from the Controller access to personal data and the information indicated in Article 15; the Controller will provide a copy of the processed data.
+  </p>
+
+  <h3>8. Right to Rectification and Erasure (Arts. 16–17 GDPR)</h3>
+  <p>
+    The data subject has the right to obtain, without undue delay, the rectification, integration and/or erasure of personal data concerning him/her.
+  </p>
+
+  <h3>9. Right to Restriction of Processing (Art. 18 GDPR)</h3>
+  <p>
+    The data subject has the right to obtain restriction of processing in the cases provided for in Article 18.
+  </p>
+
+  <h3>10. Right to Object (Art. 21 GDPR)</h3>
+  <p>
+    The data subject may object at any time, on grounds relating to his or her particular situation, to processing based on Article 6(1)(e) or (f), including profiling. In case of objection, data will no longer be processed, unless there are compelling legitimate grounds overriding the interests, rights and freedoms of the data subject, or for the establishment, exercise or defence of legal claims.
+  </p>
+
+  <h3>11. Right to Lodge a Complaint</h3>
+  <p>
+    If the data subject believes that the processing violates the GDPR, he/she has the right to lodge a complaint with the Supervisory Authority of his/her Member State of habitual residence or place of work, or where the alleged violation has occurred.
+  </p>
+
+  <h3>12. Right to Data Portability (Art. 20 GDPR)</h3>
+  <p>
+    The data subject has the right to receive the personal data provided to the Controller in a structured, commonly used and machine-readable format, and to transmit those data to another Controller.
+  </p>
+</section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="row text-center text-md-start align-items-start">
+        <div class="col-12 col-md-6 mb-3 mb-md-0">
+          <p class="mb-1"><strong>Biosantekna Srl</strong></p>
+          <address class="mb-1">Via Roma, 29/1<br/>16035 Rapallo (GE) — Italy</address>
+          <p class="mb-0">P.IVA e C.F.: 03022580991</p>
+        </div>
+        <div class="col-12 col-md-6 text-md-end">
+          <p class="mb-1">Telefono: <a href="tel:+393534895835" rel="nofollow">+39 353 489 5835</a></p>
+          <p class="mb-1">e-mail: <a href="mailto:info@biosantekna.com">info@biosantekna.com</a></p>
+          <p class="mb-1">web-site: <a href="http://www.biosantekna.com" target="_blank" rel="noopener noreferrer">www.biosantekna.com</a></p>
+          <p class="mb-0">PEC: <a href="mailto:admin@pec.biosantekna.com">admin@pec.biosantekna.com</a></p>
+        </div>
+      </div>
+
+      <hr class="my-4 border-light border-opacity-25" />
+
+      <div class="row">
+        <div class="col-12 col-md-6 text-center text-md-start mb-2 mb-md-0">
+   
+        </div>
+        <div class="col-12 col-md-6 text-center text-md-end">
+          <p class="mb-0">SEGUICI su
+            <a href="https://www.facebook.com/profile.php?id=61580553448638" target="_blank" rel="noopener noreferrer" class="ms-1 me-2">Facebook</a>
+            
+              <a href="https://www.instagram.com/biosantekna" target="_blank" rel="noopener noreferrer" class="ms-1 me-2">Instagram</a>
+            <a href="https://www.linkedin.com/in/biosantekna-biosantekna-86a820384/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 Bundle + Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
